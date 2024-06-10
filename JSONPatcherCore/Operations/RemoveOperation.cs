@@ -4,9 +4,9 @@ using Newtonsoft.Json.Linq;
 
 namespace JSONPatcherCore.Operations;
 
-public class RemoveOperation : BaseOperationWithValue
+public class RemoveOperation : BaseOperation
 {
-    public RemoveOperation(string targetPath, JToken value, int priority = 1) : base(targetPath, value, priority)
+    public RemoveOperation(string targetPath, int priority = 1) : base(targetPath, priority)
     {
     }
 
