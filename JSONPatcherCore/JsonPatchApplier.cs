@@ -19,7 +19,7 @@ public class JsonPatchApplier
         JObject tempObject = (JObject)PatchedObject.DeepClone(); // Ensures immutaibility of the original object
         foreach (IPatchOperation operation in Operations.OrderByDescending(x => x.Priority))
         {
-            operation.Apply(tempObject);
+            operation.Apply(ref tempObject);
         }
         return PatchedObject;
     }

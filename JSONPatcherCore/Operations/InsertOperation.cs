@@ -6,11 +6,11 @@ namespace JSONPatcherCore.Operations;
 
 public class InsertOperation : BaseOperationWithValue
 {
-    public InsertOperation(string targetPath, JToken value, int priority = 1) : base(targetPath, priority)
+    public InsertOperation(string targetPath, JToken value, int priority = 1) : base(targetPath, value, priority)
     {
     }
 
-    public override void Apply(JObject patchedObject)
+    public override void Apply(ref JObject patchedObject)
     {
         JToken? parent = patchedObject.SelectToken(TargetPath);
         switch (parent)

@@ -10,7 +10,7 @@ public class RemoveOperation : BaseOperation
     {
     }
 
-    public override void Apply(JObject patchedObject)
+    public override void Apply(ref JObject patchedObject)
     {
         JToken? parent = patchedObject.SelectToken(TargetPath);
         if (parent is null)

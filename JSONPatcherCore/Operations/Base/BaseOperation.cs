@@ -13,5 +13,5 @@ public abstract class BaseOperation : IPatchOperation
         Priority = priority;
     }
 
-    public abstract void Apply(JObject patchedObject);
+    public abstract void Apply(ref JObject patchedObject);
 }

@@ -7,5 +7,5 @@ public interface IPatchOperation
     public string TargetPath { get;}
     public int Priority { get; }
     
-    public void Apply(JObject patchedObject);
+    public void Apply(ref JObject patchedObject);
 }
