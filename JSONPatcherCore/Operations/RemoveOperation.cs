@@ -12,11 +12,27 @@ public class RemoveOperation : BaseOperation
 
     public override void Apply(ref JObject patchedObject)
     {
-        JToken? parent = patchedObject.SelectToken(TargetPath);
-        if (parent is null)
+        JToken? token = patchedObject.SelectToken(TargetPath);
+        switch (token)
         {
-            throw new JsonPatchTargetNotFoundException($"Target path {TargetPath} not found", patchedObject);
+            case null:
+                throw new JsonPatchTargetNotFoundException($"Target path {TargetPath} not found", patchedObject);
+            case JProperty property:
+                property.Remove();
+                break;
+            case JValue value:
+            {
+                JProperty? parent = value.Parent as JProperty;
+                if (parent is null)
+                {
+                    throw new JsonPatchException($"Target path {TargetPath} is not a property", patchedObject);
+                }
+                parent.Remove();
+                break;
+            }
+            default:
+                token.Remove();
+                break;
         }
-        parent.Remove();
     }
 }
