@@ -6,7 +6,7 @@ namespace JSONPatcherTest;
 
 public class RemoveOperationTest
 {
-    public string Test_JSON = @"{
+  public const string TestJson = @"{
   ""data"": {
     ""name"": ""John Doe"",
     ""age"": 30,
@@ -29,29 +29,29 @@ public class RemoveOperationTest
     [Fact]
     public void Test_RemoveOperationSuccess()
     {
-      JObject json = JObject.Parse(Test_JSON);
+      JObject json = JObject.Parse(TestJson);
       string target = ".data.addresses[0]";
       RemoveOperation op = new RemoveOperation(target);
       op.Apply(ref json);
-      Assert.Equal(1, json["data"]["addresses"].Count());
-      Assert.Equal("456 Main St", json["data"]["addresses"][0]["street"].ToString());
+      Assert.Single(json["data"]!["addresses"]!);
+      Assert.Equal("456 Main St", json["data"]!["addresses"]![0]["street"].ToString());
     }
 
     [Fact]
     public void Test_RemoveOperationSuccess2()
     {
-      JObject json = JObject.Parse(Test_JSON);
+      JObject json = JObject.Parse(TestJson);
       string target = ".data.name";
-      Assert.True(((JObject)json["data"]).ContainsKey("name"));
+      Assert.True((((JObject)json["data"]!)!).ContainsKey("name"));
       RemoveOperation op = new RemoveOperation(target);
       op.Apply(ref json);
-      Assert.False(((JObject)json["data"]).ContainsKey("name"));
+      Assert.False((((JObject)json["data"]!)!).ContainsKey("name"));
     }
 
     [Fact]
     public void Test_RemoveOperationFailureWrongPath()
     {
-      JObject json = JObject.Parse(Test_JSON);
+      JObject json = JObject.Parse(TestJson);
       string target = ".data.locations";
       RemoveOperation op = new RemoveOperation(target);
       Assert.Throws<JsonPatchTargetNotFoundException>(() => op.Apply(ref json));

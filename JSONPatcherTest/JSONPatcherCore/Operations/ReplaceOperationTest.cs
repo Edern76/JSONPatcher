@@ -6,7 +6,7 @@ namespace JSONPatcherTest;
 
 public class ReplaceOperationTest
 {
-    public string Test_JSON = @"{
+  public const string TestJson = @"{
   ""data"": {
     ""name"": ""John Doe"",
     ""age"": 30,
@@ -30,7 +30,7 @@ public class ReplaceOperationTest
     [Fact]
     public void Test_ReplaceOperationSuccess()
     {
-      JObject json = JObject.Parse(Test_JSON);
+      JObject json = JObject.Parse(TestJson);
       string target = ".data.addresses[0].street";
       string value = "789 Elm St";
       ReplaceOperation op = new ReplaceOperation(target, value);
@@ -41,7 +41,7 @@ public class ReplaceOperationTest
     [Fact]
     public void Test_ReplaceOperationSuccess2()
     {
-      JObject json = JObject.Parse(Test_JSON);
+      JObject json = JObject.Parse(TestJson);
       string target = ".data.age";
       int value = 31;
       ReplaceOperation op = new ReplaceOperation(target, value);
@@ -52,7 +52,7 @@ public class ReplaceOperationTest
     [Fact]
     public void Test_ReplaceOperationFailureWrongPath()
     {
-      JObject json = JObject.Parse(Test_JSON);
+      JObject json = JObject.Parse(TestJson);
       string target = ".data.locations";
       string value = "789 Elm St";
       ReplaceOperation op = new ReplaceOperation(target, value);

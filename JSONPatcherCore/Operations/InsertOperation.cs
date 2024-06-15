@@ -20,8 +20,18 @@ public class InsertOperation : BaseOperationWithValue
             case JArray array:
                 array.Add(Value);
                 break;
+            case JObject obj:
+                if (Value is JProperty property)
+                {
+                    obj.Add(property);
+                }
+                else
+                {
+                    throw new JsonPatchException($"Trying to insert non JProperty object into a JObject", patchedObject);
+                }
+                break;
             default:
-                throw new JsonPatchException($"Target path {TargetPath} is not an array", patchedObject);
+                throw new JsonPatchException($"Target path {TargetPath} is not an insertable type", patchedObject);
         }
     }
 }

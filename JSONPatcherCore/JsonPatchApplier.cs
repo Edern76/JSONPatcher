@@ -6,7 +6,7 @@ namespace JSONPatcherCore;
 public class JsonPatchApplier
 {
     private JObject PatchedObject { get; set; }
-    private List<IPatchOperation> Operations { get; set; }
+    public List<IPatchOperation> Operations { get; set; }
     
     public JsonPatchApplier(JObject patchedObject, List<IPatchOperation> operations)
     {
@@ -21,6 +21,6 @@ public class JsonPatchApplier
         {
             operation.Apply(ref tempObject);
         }
-        return PatchedObject;
+        return tempObject;
     }
 }
