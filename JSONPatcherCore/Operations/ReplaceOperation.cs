@@ -6,7 +6,7 @@ namespace JSONPatcherCore.Operations;
 
 public class ReplaceOperation : BaseOperationWithValue
 {
-    public ReplaceOperation(string targetPath, JToken value, int priority = 1) : base(targetPath, value, priority)
+    public ReplaceOperation(string targetPath, JToken value, int? priority = 1) : base(targetPath, value, priority)
     {
     }
 

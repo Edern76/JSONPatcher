@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONPatcherCore", "JSONPatc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONPatcherTest", "JSONPatcherTest\JSONPatcherTest.csproj", "{74B6D8E5-4C1A-491B-9926-6D734EB2255B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONPatchParser", "JSONPatchParser\JSONPatchParser.csproj", "{D69B58DF-983F-4E47-A3CB-9DA96F2B9EB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{74B6D8E5-4C1A-491B-9926-6D734EB2255B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74B6D8E5-4C1A-491B-9926-6D734EB2255B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74B6D8E5-4C1A-491B-9926-6D734EB2255B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D69B58DF-983F-4E47-A3CB-9DA96F2B9EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69B58DF-983F-4E47-A3CB-9DA96F2B9EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69B58DF-983F-4E47-A3CB-9DA96F2B9EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D69B58DF-983F-4E47-A3CB-9DA96F2B9EB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

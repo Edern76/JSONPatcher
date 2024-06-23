@@ -6,7 +6,7 @@ namespace JSONPatcherCore.Operations;
 
 public class InsertOperation : BaseOperationWithValue
 {
-    public InsertOperation(string targetPath, JToken value, int priority = 1) : base(targetPath, value, priority)
+    public InsertOperation(string targetPath, JToken value, int? priority = 1) : base(targetPath, value, priority)
     {
     }
 

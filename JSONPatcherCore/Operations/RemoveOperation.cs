@@ -6,7 +6,7 @@ namespace JSONPatcherCore.Operations;
 
 public class RemoveOperation : BaseOperation
 {
-    public RemoveOperation(string targetPath, int priority = 1) : base(targetPath, priority)
+    public RemoveOperation(string targetPath, int? priority = 1) : base(targetPath, priority)
     {
     }
 
