@@ -13,7 +13,7 @@ public class ValueOperationProcessor<T> : IProcessor where T : BaseOperationWith
         return (T)Activator.CreateInstance(typeof(T), new object[] { schema.Path, value, schema.Priority });
     }
 
-    private static JToken ParseAsProperty(JObject obj)
+    private static JProperty ParseAsProperty(JObject obj)
     {
         if (obj is null)
         {
@@ -27,6 +27,6 @@ public class ValueOperationProcessor<T> : IProcessor where T : BaseOperationWith
                 "Trying to parse object with more or less than one property as property");
         }
 
-        return obj.Properties().First().Value;
+        return obj.Properties().First();
     }
 }
