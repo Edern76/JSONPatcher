@@ -20,7 +20,9 @@ public class RemoveParsingTest
     [Fact]
     public void Test_ParseSingle_RemoveOperation_WithoutPriority()
     {
-        IPatchOperation op = JsonPatchParser.ParseSingle(TestJson1);
+        List<IPatchOperation> result = JsonPatchParser.ParseUnsafe(TestJson1);
+        Assert.Single(result);
+        IPatchOperation op = result[0];
         Assert.IsType<RemoveOperation>(op);
         RemoveOperation removeOp = (RemoveOperation)op;
         Assert.Equal("/data/name", removeOp.TargetPath);
@@ -30,7 +32,9 @@ public class RemoveParsingTest
     [Fact]
     public void Test_ParseSingle_RemoveOperation_WithPriority()
     {
-        IPatchOperation op = JsonPatchParser.ParseSingle(TestJson2);
+        List<IPatchOperation> result = JsonPatchParser.ParseUnsafe(TestJson2);
+        Assert.Single(result);
+        IPatchOperation op = result[0];
         Assert.IsType<RemoveOperation>(op);
         RemoveOperation removeOp = (RemoveOperation)op;
         Assert.Equal("/data/age", removeOp.TargetPath);
