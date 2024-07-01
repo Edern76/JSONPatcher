@@ -1,5 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
+using JSONPatcherCore.Exceptions;
 using JSONPatcherCore.Operations;
 using JSONPatcherCore.Operations.Base;
 using JSONPatchParser.Processors;
@@ -73,6 +74,42 @@ public static class JsonPatchParser
                 break;
             default:
                 throw new InvalidOperationException("Invalid JSON Patch root");
+        }
+
+        return result;
+    }
+
+    public static List<IPatchOperation> ParseFolder(string path, bool recursive = true)
+    {
+        if (!Directory.Exists(path))
+        {
+            throw new DirectoryNotFoundException($"Directory {path} does not exist");
+        }
+
+        IEnumerable<string> files = Directory
+            .GetFiles(path, "*.json", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)
+            .Where(p =>
+            {
+                string fileName = Path.GetFileName(p);
+                return fileName.StartsWith("Patch_") || fileName.StartsWith("Patches_");
+            });
+        Dictionary<string, List<string>> errorsMap = new Dictionary<string, List<string>>();
+        List<IPatchOperation> result = files.SelectMany(file =>
+        {
+            List<string> errors = new List<string>();
+            List<IPatchOperation> operations = Parse(File.ReadAllText(file), ref errors);
+            if (errors.Count > 0)
+            {
+                errorsMap.Add(file, errors);
+            }
+
+            return operations;
+        }).ToList();
+        if (errorsMap.Count > 0)
+        {
+            string errors = string.Join("\n",
+                errorsMap.Select(pair => $"- {pair.Key}:\n{string.Join("\n", pair.Value)}"));
+            throw new JsonPatchException($"Errors while parsing JSON Patches:\n{errors}");
         }
 
         return result;

@@ -7,7 +7,7 @@ public class JsonPatchApplier
 {
     private JObject PatchedObject { get; set; }
     public List<IPatchOperation> Operations { get; set; }
-    
+
     public JsonPatchApplier(JObject patchedObject, List<IPatchOperation> operations)
     {
         PatchedObject = patchedObject;
@@ -16,11 +16,12 @@ public class JsonPatchApplier
 
     public JObject Apply()
     {
-        JObject tempObject = (JObject)PatchedObject.DeepClone(); // Ensures immutaibility of the original object
+        JObject tempObject = (JObject)PatchedObject.DeepClone(); // Ensures immutability of the original object
         foreach (IPatchOperation operation in Operations.OrderByDescending(x => x.Priority))
         {
             operation.Apply(ref tempObject);
         }
+
         return tempObject;
     }
 }

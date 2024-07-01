@@ -9,7 +9,7 @@ public class ValueOperationProcessor<T> : IProcessor where T : BaseOperationWith
     public IPatchOperation Process(JsonPatchSchema schema)
     {
         bool parseAsProperty = schema.ParseAsProperty ?? false;
-        JToken value = parseAsProperty ? ParseAsProperty(schema.Value) : schema.Value;
+        JToken value = parseAsProperty ? ParseAsProperty((JObject)schema.Value) : schema.Value;
         return (T)Activator.CreateInstance(typeof(T), new object[] { schema.Path, value, schema.Priority });
     }
 
