@@ -4,14 +4,24 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>JSONPatcher.Parser</Title>
+        <Description>Library for patching JSON Patches</Description>
+        <Copyright>Copyright (c) 2024 Gawein LE GOFF</Copyright>
+        <PackageProjectUrl>https://github.com/Edern76/JSONPatcher</PackageProjectUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <RepositoryUrl>https://github.com/Edern76/JSONPatcher.git</RepositoryUrl>
+        <PackageId>JSONPatcherParser</PackageId>
+        <Authors>Edern</Authors>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="JSONPatcherCore" Version="1.0.0"/>
+        <NONE Include="..\LICENSE" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\JSONPatcherCore\JSONPatcherCore.csproj" />
+        <ProjectReference Include="..\JSONPatcherCore\JSONPatcherCore.csproj"/>
     </ItemGroup>
 
 </Project>
